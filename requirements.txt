@@ -3,7 +3,6 @@ astropy==5.2.1
 astunparse==1.6.3
 cached-property==1.5.2
 cachetools==5.3.0
-certifi @ file:///croot/certifi_1671487769961/work/certifi
 cffi==1.15.1
 charset-normalizer==3.1.0
 chex==0.1.7

@@ -160,3 +160,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 *.ckpt
+
+Cacophony.ckpt:Zone.Identifier
+audio_names_order.json
+cacophony_embeddings.json
+embeddings/
+limit_ram.sh

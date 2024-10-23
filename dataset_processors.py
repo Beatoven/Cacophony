@@ -5,7 +5,7 @@ import os, csv, glob, json
 import pandas as pd
 from dataclasses import dataclass
 from eval_dataset_configs import VGGSoundConfig, TUTAS2017Config, \
-    ESC50Config, US8KConfig, AudioCaps16kConfig, Clotho16kConfig
+    ESC50Config, US8KConfig, AudioCaps16kConfig, Clotho16kConfig, BeatovenConfig
 
 @dataclass
 class DatasetProcessor(ABC):
@@ -249,5 +249,41 @@ class Clotho16kProcessor(DatasetProcessor):
             text_dict[audio_name] = text_captions
             
             # obtain computer description item
+
+        return audio_filepath_list, text_dict, synthetic_text_dict
+    
+
+class BeatovenProcessor(DatasetProcessor):
+    # clothov2 uses a master cvs for each datasplit instead of paired wav-json
+    config = BeatovenConfig()
+    
+    def get_filepaths_and_descriptions(self, current_split=''):
+        
+        # init output lists
+        audio_filepath_list = []
+        text_dict = {}
+        synthetic_text_dict = {}
+        audio_names = []
+        
+        # load audio filepaths
+        audio_files = glob.glob(f'{self.config.data_dir}/*.wav')
+
+        # load meta files
+        for audio_filepath in tqdm(audio_files[:]):
+            
+            # load audio filepaths
+            audio_filepath_list.append(audio_filepath)
+            audio_name = audio_filepath.split('/')[-1]
+            
+
+            # collecting captions
+            text_captions = {}
+            text_captions['description'] = []
+            text_dict[audio_name] = ''
+            text_dict[audio_name] = ''
+            audio_names.append(audio_name)
+
+        with open('audio_names_order.json', 'w') as fp:
+            json.dump(audio_names, fp)
 
         return audio_filepath_list, text_dict, synthetic_text_dict

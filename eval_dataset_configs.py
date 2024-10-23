@@ -29,3 +29,8 @@ class ESC50Config:
 class US8KConfig:
     data_dir: str = '/storageHDD/ge/audio_sfx_raw/us8k/UrbanSound8K'
     sampling_rate: int = 44100
+
+@dataclass
+class BeatovenConfig:
+    data_dir: str = '/home/ubuntu/radiowalla_tracks'
+    sampling_rate: int = 44100
